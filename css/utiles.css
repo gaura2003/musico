@@ -22,6 +22,11 @@ body{
 }
   h3 , h2{
     margin: 0;
+    width: 100px;
+    white-space: nowrap;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   img{
     width:100px;
