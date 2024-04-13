@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+body img {
+    width: 100%;
+}
+
+body {
+    min-width: 350px; 
+  background:linear-gradient(black , rgb(75, 31, 75));
+    margin: 0px;
+    padding: 0px;
+}
+
+body a {
+    text-decoration: none;
+   color: rgb(204, 203, 201);     
+}
+.nav-title{
+    color:white;
+}
+
+header {
+    display: flex;
+}
+
+.logo-holder {
+    width: 100px;
+}
+
+.main-title {
+    margin-top: 5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.card-content {
+    padding: 4px;
+}
+
+.card-title {
+    font-size: 18px;
+}
+
+.card-subtitle {
+    opacity: 0.7;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: solid thin #ccc;
+    border-radius: 10px;
+
+}
+
+.btn {
+    border: none;
+    padding: 2px 20px;
+    cursor: pointer;
+    margin: 0 20px;
+    border-radius: 5px;
+    background-color: rgb(46, 46, 231);
+    font-size: 17px;
+    color: aliceblue;
+
+}
+
+.form-group {
+    display: flex;
+}
+
+.section-title {
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+    margin-top: 20px;
+    
+}
+
+@media (max-width:600px) {
+    .logo-holder {
+    width: 60px;
+   }
+   
+    .card-title {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .card-subtitle {
+        opacity: 0.7;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .banner {
+        height: 100px;
+    }
+
+    
+}

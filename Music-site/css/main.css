@@ -1,0 +1,163 @@
+ body {
+
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .nav-item {
+            margin-left: 10px;
+        }
+        .nav-link {
+            color: #333;
+        }
+        .nav-link:hover {
+            color: #007bff;
+        }
+        .nav-link.active {
+            color: #007bff;
+            font-weight: bold;
+        }
+              
+#loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  color: #333;
+}
+
+#page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.option {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+  
+   
+    .container {
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        display: flex;
+        padding: 20px;
+        margin-bottom: 100px;
+    }
+    .music-card {
+        width: 150px;
+        margin-right: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        text-align: center;
+    }
+    .music-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        
+    }
+    
+    #musicPlayerDrawer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 140px;
+        background-color: #fff;
+        border-top: 1px solid #ddd;
+        padding: 20px;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        display: none;
+        overflow: hidden;
+        margin-bottom: 60px;
+    }
+    
+   
+    #musicPlayerDrawer.active {
+        display: block;
+    }
+    #musicPlayerDrawer img {
+        max-width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        margin-right: 20px;
+    }
+    #musicInfo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    #musicTitle {
+        margin: 0;
+    }
+    .music-controls button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    .music-controls button:hover svg {
+        fill: #4CAF50;
+    }
+    
+    h5, p{
+        padding: 0px;
+        margin: 0px;
+        white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  
+  
+    }
+    
+    .artist img:hover {
+    transform: scale(1.2);
+}
+
+.artist img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    transition: all .5s ease;
+}
+
+/* Add this CSS to your existing stylesheet or create a new one */
+#playPauseBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Style the SVG icons */
+#playIcon,
+#pauseIcon {
+    fill: #000; /* Change the color as needed */
+}
+
+/* Hide the pause icon by default */
+#playIcon {
+    display: none;
+}
