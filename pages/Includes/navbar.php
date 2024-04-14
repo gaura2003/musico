@@ -65,7 +65,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="login.php">Logout</a>
                 </li>
-                <li>
+                <li style="margin-left:450px;" >
                 <form method="GET" action="search.php" style="display:inline;">
                 <div class="form-group">
                     <input class="form-control" type="text" name="search" placeholder="Search for Music " name="find"

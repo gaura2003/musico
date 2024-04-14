@@ -1,94 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Musico - User Profile</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        
+    }
+    .box{
+        height: 70vh;
+        display:flex;
+        flex-direction:row;
+        justify-content: centr;
+    align-items: center;
+    }
+    img{
+        border-radius: 50%;
+    width: 50%;
+    height: 50%;
+    }
+    .name{
+        color: white;
+    font-size: 40px;
+    }
+    .email{
+        color: white;
+    font-size: 40px;
+    }
+    .profile{
+        display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 50px;
+    margin-left: 150px;
+    margin-top: 100px;
+    }
+    .options{
+        display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 30px;
+    align-items: center;
+    padding: 50px;
+    margin-left: 150px;
+    margin-top: 100px;
 
-<link rel="stylesheet" type="text/css" href="styles.css">
- <script src="script.js"></script>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../css/main.css">
+    }
+    .options div{
+        background: ;
+        width:300px;
+    margin: 15px;
     
-      <link rel="stylesheet" href="../css/home.css">
-      <style>
-       body{
-           margin:0;
-           padding:0;
-           height:100vh;
-       }
-       nav{
-           border-radius:20px;
-       }
-   </style>
+ 
+    }
+    a{
+        text-decoration:none;
+        color:black;  
+    }
+    @media (max-width:600px) {
+
+
+    .box{
+        height: 60vh;
+        display:flex;
+        flex-direction:column;
+    }
+
+    img{
+        border-radius: 50%;
+    width: 30%;
+    height: 30%;
+    }
+    .name{
+        color: white;
+    font-size: 20px;
+    }
+    .email{
+        color: white;
+    font-size: 20px;
+    }
+    .profile{
+        display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 0px;
+    
+    
+   
+    }
+    .options{
+        display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+    align-items: center;
+    padding: 10px;
+    margin-top: 20px;
+
+    }
+
+    }
+    </style>
 </head>
-<body onload="startTimer()" >
-  <div id="loader">Loading...</div>
-  <div id="page" style="display: none;">         
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-     <?php
-            // Start the session
-            session_start();
 
-            // Check if the user is logged in
-            if(isset($_SESSION['username'])) {
-                $username = $_SESSION['username'];
-            } else {
-                $username = "Guest"; // Default username if not logged in
-            }
+<body>
+    <?php include  '../pages/includes/navbar.php'; ?>
+    <div class="box">
+        <div class="profile">
+            <img src="../Assests/OIP.jpeg" alt="">
+            <div class="name">$username</div>
+            <div class="email">example@gmail.com</div>
 
-            echo '<a class="navbar-brand" href="#">' . $username . '</a>';
-            ?>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="profile.php">Profile</a>
-                </li>
-                <li class="nav-item">
-  <a class="nav-link" href="artist list.php">Artists</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Category</a>
-                </li>
-                                <li class="nav-item">
-                    <a class="nav-link" href="../Trim Songs/index.html">Ringtones</a>
-                </li>
-                 <li class="nav-item">
-  <a class="nav-link" href="upload music.php">Upload Music</a>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php">Logout</a>
-                </li>
-                <li>
-                <form method="GET" action="search.php" style="display:inline;">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="search" placeholder="Search for Music " name="find"
-                        id="">
-                    <button type="submit" class="btn">Search</button>
-                </div>
-            </form>
-                </li>
-            </ul>
         </div>
-    </nav>
-
-
-    
+        <div class="options">
+            <div><a href="upload music.php">Upload Music</a></div>
+            <div><a href="../Trim Songs/index.php">Ringtones maker</a></div>
+            <div><a href="">Playlists</a></div>
+            <div><a href="">Invite friends</a></div>
+            <div><a href="">Contact Us</a></div>
+            <div><a href="">About Us</a></div>
+            <div><a href="">Settings</a></div>
+            
+            </div>
+    </div>
 </body>
 <?php include  '../pages/includes/sticky footer.php'; ?>
-<script>
-        function startTimer() {
-  setTimeout(showPage, 1000); // Show the page after 5 seconds
-}
 
-function showPage() {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("page").style.display = "block";
-}
-    </script>
 </html>

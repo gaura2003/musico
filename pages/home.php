@@ -12,15 +12,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/home.css">
+    <style>
+        
+    </style>
 </head>
 
 <body onload="startTimer()">
     <div id="loader">Loading...</div>
     <div id="page" style="display: none;">
-        <?php include  '../pages/includes/header.php'; ?>
+    
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <?php
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <?php
             // Start the session
             session_start();
 
@@ -33,46 +36,44 @@
 
             echo '<a class="navbar-brand" href="#">' . $username . '</a>';
             ?>
-    
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-title" href="profile.php" style="color:black;">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-title" href="artist list.php" style="color:black;">Artists</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-title" href="#" style="color:black;">Category</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-title" href="../Trim Songs/index.html" style="color:black;">Ringtones</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-title" href="upload music.php" style="color:black;">Upload Music</a>
-                    <li class="nav-item">
-                        <a class="nav-title" href="login.php" style="color:black;">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <div class="footer-div">
-            <form method="GET" action="search.php">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="profile.php">Profile</a>
+                </li>
+                <li class="nav-item">
+  <a class="nav-link" href="artist list.php">Artists</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Category</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="../Trim Songs/index.html">Ringtones</a>
+                </li>
+                 <li class="nav-item">
+  <a class="nav-link" href="upload music.php">Upload Music</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php">Logout</a>
+                </li>
+                <li style="margin-left:450px;" >
+                <form method="GET" action="search.php" style="display:inline;">
                 <div class="form-group">
                     <input class="form-control" type="text" name="search" placeholder="Search for Music " name="find"
                         id="">
                     <button type="submit" class="btn">Search</button>
                 </div>
             </form>
+                </li>
+            </ul>
         </div>
+    </nav> 
+
 
         <section style="display:flex; justify-content:center;">
-            <img class="banner" style="width:500px;" src="../Assests/OIP.jpeg" alt="">
+            <img class="banner" style="width:500px; margin:40px 0 0 0 ;" src="../Assests/OIP.jpeg" alt="">
         </section>
         <br><br>
         <span class="section-title">Artists <a style="float:right;" href="artist list.php">view all</a>
