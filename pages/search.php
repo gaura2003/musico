@@ -1,75 +1,179 @@
-<?php
+<!DOCTYPE html>
+<html>
 
-include "../Includes/connection.php";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Music list</title>
+    <link rel="stylesheet" href="../css/music list.css">
+    
+</head>
 
-// Retrieve search query
-$search = $_GET['search'];
+<body>
 
-// Prepare SQL query to search for music
-$sql_select = "SELECT * FROM music WHERE title LIKE '%$search%' OR 
+    <header>
+        <nav>
+            <ul>
+                <li style="color: black;">songs</li>
+                <li>album</li>
+                <li>artist</li>
+                <li>playlists</li>
+                <li>
+                    <form method="GET" action="music list.php" style="display:inline;">
+                        <input type="search" name="search" placeholder="Search for Music " name="find" id="">
+                    </form>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+    <div class="laptop">
+
+        <div class="box1">
+            <div class="container">
+                <?php
+    include "../Includes/connection.php";
+
+    // Retrieve search query
+    $search = $_GET['search'];
+
+    // Prepare SQL query to search for music
+    $sql_select = "SELECT * FROM music WHERE title LIKE '%$search%' OR 
                artist LIKE '%$search%' OR album LIKE '%$search%' OR 
                genre LIKE '%$search%'";
 
-$result = $conn->query($sql_select);
+    $result = $conn->query($sql_select);
 
-if ($result->num_rows > 0) {
-    // Output data of each row
-    while ($row = $result->fetch_assoc()) {
-        echo '<div class="music-card" onclick="openMusicPlayerDrawer(\'' . $row["title"] . '\', \'' . $row["artist"] . '\', \'' . $row["file_path"] . '\', \'' . $row["image_path"] . '\')">';
-        echo '<img src="' . $row["image_path"] . '" alt="Music Image">';
-        echo '<div class="details">';
-        echo '<p>' . $row["title"] . '</p>';
-        echo '<p>' . $row["artist"] . '</p>';
-        echo '<p>' . $row["album"] . '</p>';
-        echo '</div>';
-        echo '</div>';
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while($row = $result->fetch_assoc()) {
+            echo '<div class="view" onclick="playMusic(\'' . $row["file_path"] . '\')">';
+            echo '<div class="image"><img src="' . $row["image_path"] . '" alt="' . $row["image_path"] . '"></div>';
+            echo '<div class="text">';
+            echo '<h4>' . $row["title"] . '</h4>';
+            echo '<h6>' . $row["artist"] . ' - ' . $row["album"] . '</h6>';
+            echo '</div>';
+            echo '<div class="bars">';
+            echo '<div class="bar1"></div>';
+            echo '<div class="bar2"></div>';
+            echo '<div class="bar3"></div>';
+            echo '<div class="bar4"></div>';
+            echo '</div>';
+            echo '<div class="more">...</div>';
+            echo '</div>';
+        }
+    } else {
+        echo "<li>No music records found</li>";
     }
-} else {
-    echo "<p>No music records found</p>";
+    $conn->close();
+    ?>
+            </div>
+        </div>
+
+        <div class="box2">
+        <div class="drawer" id="drawer">
+    <div class="drawer-view">
+      <div>
+        <img class="image" src="../Assests/OIP.jpeg" alt="e" id="songImage">
+      </div>
+      <div class="drawer-text">
+        <marquee> <h4 id="musicName">Music Name</h4></marquee>
+        <h6 id="artistAlbum">Artist Name - Album Name</h6>
+      </div>
+      <div class="buttons">
+        <button onclick="previous()">⏪</button>
+        <button onclick="togglePlayPause()" id="playPauseButton">⏸️</button>
+        <button onclick="next()">⏩</button>
+      </div>
+    </div>
+                <div class="progress">
+                    <span id="currentTime">0:00</span>
+                    <div id="progressContainer">
+                        <div id="progress" data-progress="0%"></div>
+                    </div>
+                    <span id="fullTime">0:00</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+
+</body>
+
+<script>
+// Audio player
+var audio = document.getElementById("audioPlayer");
+var currentIndex = -1;
+var musicList = [];
+
+// Function to play music
+function playMusic(filePath) {
+    audio.src = filePath;
+    audio.play();
+    // Update UI
+    var view = document.querySelector(".view.active");
+    if (view) {
+        view.classList.remove("active");
+    }
+    view = event.currentTarget;
+    view.classList.add("active");
+    // Update music details in drawer
+    var musicName = view.querySelector("h4").textContent;
+    var artistAlbum = view.querySelector("h6").textContent;
+    var songImage = view.querySelector("img").src;
+    document.getElementById("musicName").textContent = musicName;
+    document.getElementById("artistAlbum").textContent = artistAlbum;
+    document.getElementById("songImage").src = songImage;
+    document.getElementById("playPauseButton").textContent = "⏸️"; // Set play icon initially
 }
 
-$conn->close();
-?>
+// Function to toggle play/pause
+function togglePlayPause() {
+    if (audio.paused) {
+        audio.play();
+        document.getElementById("playPauseButton").textContent = "⏸️"; // Change to pause icon
+    } else {
+        audio.pause();
+        document.getElementById("playPauseButton").textContent = "▶️"; // Change to play icon
+    }
+}
+
+// Function to play next music
+function next() {
+    currentIndex++;
+    if (currentIndex >= musicList.length) {
+        currentIndex = 0;
+    }
+    playMusic(musicList[currentIndex]);
+}
+
+// Function to play previous music
+function previous() {
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentIndex = musicList.length - 1;
+    }
+    playMusic(musicList[currentIndex]);
+}
+
+// Update progress bar and time
+audio.addEventListener("timeupdate", function() {
+    var currentTime = audio.currentTime;
+    var fullTime = audio.duration;
+    var progress = (currentTime / fullTime) * 100;
+    var minutes = Math.floor(currentTime / 60);
+    var seconds = Math.floor(currentTime % 60);
+    var currentTimeString = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+    minutes = Math.floor(fullTime / 60);
+    seconds = Math.floor(fullTime % 60);
+    var fullTimeString = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+    document.getElementById("currentTime").textContent = currentTimeString;
+    document.getElementById("fullTime").textContent = fullTimeString;
+    document.getElementById("progress").style.width = progress + "%";
+});
+</script>
 <?php include  '../pages/includes/sticky footer.php'; ?>
-<style>
-    /* Default styles for music card */
-.music-card {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
 
-.music-card img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-    border-radius: 5px;
-}
-
-.music-card p {
-    margin: 0;
-}
-
-.music-card .details {
-    flex: 1;
-}
-
-.music-card .details p:nth-child(2) {
-    font-weight: bold;
-}
-
-/* Media query for mobile devices */
-@media only screen and (max-width: 468px) {
-    .music-card {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .music-card img {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-}
-
-</style>
+</html>

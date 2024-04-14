@@ -62,7 +62,7 @@
         </nav>
 
         <div class="footer-div">
-            <form method="GET" action="music list.php">
+            <form method="GET" action="search.php">
                 <div class="form-group">
                     <input class="form-control" type="text" name="search" placeholder="Search for Music " name="find"
                         id="">

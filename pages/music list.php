@@ -34,15 +34,10 @@
                 <?php
     include "../Includes/connection.php";
 
-    // Retrieve search query
-    $search = $_GET['search'];
-
-    // Prepare SQL query to search for music
-    $sql_select = "SELECT * FROM music WHERE title LIKE '%$search%' OR 
-               artist LIKE '%$search%' OR album LIKE '%$search%' OR 
-               genre LIKE '%$search%'";
-
+    // Retrieve data from database
+    $sql_select = "SELECT * FROM music";
     $result = $conn->query($sql_select);
+
 
     if ($result->num_rows > 0) {
         // Output data of each row
