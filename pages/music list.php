@@ -9,7 +9,7 @@
     
 </head>
 
-<body>
+<body style="height:100vh;" >
 
     <header>
         <nav>

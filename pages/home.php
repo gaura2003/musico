@@ -44,7 +44,7 @@
                         <a class="nav-title" href="profile.php" style="color:black;">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-title" href="" style="color:black;">Artists</a>
+                        <a class="nav-title" href="artist list.php" style="color:black;">Artists</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-title" href="#" style="color:black;">Category</a>

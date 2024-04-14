@@ -9,7 +9,7 @@
     
 </head>
 
-<body>
+<body style="height:100vh;">
 
     <header>
         <nav>
@@ -19,7 +19,7 @@
                 <li>artist</li>
                 <li>playlists</li>
                 <li>
-                    <form method="GET" action="music list.php" style="display:inline;">
+                    <form method="GET" action="search.php" style="display:inline;">
                         <input type="search" name="search" placeholder="Search for Music " name="find" id="">
                     </form>
                 </li>
@@ -33,7 +33,7 @@
             <div class="container">
                 <?php
     include "../Includes/connection.php";
-
+   echo '<div style="display:none;" >';
     // Retrieve search query
     $search = $_GET['search'];
 
@@ -41,7 +41,7 @@
     $sql_select = "SELECT * FROM music WHERE title LIKE '%$search%' OR 
                artist LIKE '%$search%' OR album LIKE '%$search%' OR 
                genre LIKE '%$search%'";
-
+echo '</div>';
     $result = $conn->query($sql_select);
 
     if ($result->num_rows > 0) {

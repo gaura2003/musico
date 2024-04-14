@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artist Details</title>
   <style>
+    body{
+      background:linear-gradient(black , rgb(75, 31, 75));
+      height:100vh;
+
+    }
     .container {
       max-width: 600px;
       margin: 0 auto;
@@ -30,6 +35,7 @@
     }
     .artist-details h2, .artist-details p {
       margin: 0;
+      color:white;
     }
     img{
       width:300px;

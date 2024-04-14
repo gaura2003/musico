@@ -2,11 +2,98 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">    
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home Page</title>
-    <link rel="stylesheet" href="../css/utiles.css">
+    
+    <style>
+    body {
+        background: linear-gradient(black, rgb(75, 31, 75));
+        height: 100vh;
+
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 15px 15px;
+        justify-content: center;
+        
+
+    }
+
+    .card {
+        background-color: rgb(172, 188, 201);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 150px;
+        height: 180px;
+        align-items: center;
+        padding: 10px 0;
+        text-align:center;
+    }
+
+    h3,
+    h2 {
+        margin: 0;
+        width: 100px;
+        white-space: wrap;
+        font-size: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+    }
+
+    .artist-link {
+
+        display: flex;
+        text-decoration: none;
+        color: black;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media screen and (max-width:400px) {
+        .container {
+            grid-template-columns: auto auto;
+
+        }
+
+        .card {
+            width: 120px;
+            height: 120px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        img {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+        }
+
+        h3,
+        h2 {
+            margin: 0;
+            font-size: 15px;
+            text-overflow: hidden;
+        }
+
+    }
+    </style>
 
 </head>
 
