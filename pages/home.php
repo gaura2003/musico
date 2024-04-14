@@ -1,34 +1,3 @@
-<?php
-session_start(); // Start the session to access session variables
-
-include "../Includes/connection.php";
-
-// Check if the user is logged in
-if(isset($_SESSION['user_id'])) {
-    // Retrieve the user's ID from the session
-    $user_id = $_SESSION['user_id'];
-    
-    // Prepare SQL query to retrieve user's name
-    $sql_select_username = "SELECT name FROM Registration WHERE id = $user_id"; // Adjust the column names if needed
-    
-    // Execute the query
-    $result_username = $conn->query($sql_select_username);
-    
-    // Check if the query was successful
-    if ($result_username->num_rows > 0) {
-        // Fetch the user's name
-        $row_username = $result_username->fetch_assoc();
-        $username = $row_username["name"];
-    } else {
-        // Set a default username if the user's name is not found
-        $username = "Guest";
-    }
-} else {
-    // Set a default username if the user is not logged in
-    $username = "Guest";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +20,20 @@ if(isset($_SESSION['user_id'])) {
         <?php include  '../pages/includes/header.php'; ?>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"><?php echo $username; ?></a>
+        <?php
+            // Start the session
+            session_start();
+
+            // Check if the user is logged in
+            if(isset($_SESSION['username'])) {
+                $username = $_SESSION['username'];
+            } else {
+                $username = "Guest"; // Default username if not logged in
+            }
+
+            echo '<a class="navbar-brand" href="#">' . $username . '</a>';
+            ?>
+    
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -89,8 +71,8 @@ if(isset($_SESSION['user_id'])) {
             </form>
         </div>
 
-        <section>
-            <img class="banner" src="../admin panel/images/images (2).png" alt="">
+        <section style="display:flex; justify-content:center;">
+            <img class="banner" style="width:500px;" src="../Assests/OIP.jpeg" alt="">
         </section>
         <br><br>
         <span class="section-title">Artists <a style="float:right;" href="artist list.php">view all</a>

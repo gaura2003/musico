@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sticky Footer</title>
-<link rel="stylesheet" href="../css/main.css">
+
 <style>
     footer {
     position: fixed;
@@ -83,7 +83,7 @@ function navigate(destination) {
             window.location.href = 'search.php';
             break;
         case 'library':
-            window.location.href = 'library.php';
+            window.location.href = 'music list.php';
             break;
         case 'profile':
             window.location.href = 'profile.php';

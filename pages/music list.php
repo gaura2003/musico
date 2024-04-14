@@ -2,25 +2,36 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Music list</title>
-  <link rel="stylesheet" href="../css/music list.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Music list</title>
+    <link rel="stylesheet" href="../css/music list.css">
+    
 </head>
+
 <body>
 
-  <header>
-    <nav>
-      <ul>
-        <li style="color: black;">songs</li>
-        <li>album</li>
-        <li>artist</li>
-        <li>playlists</li>
-      </ul>
-    </nav>
-  </header>
-  <div class="container">
-    <?php
+    <header>
+        <nav>
+            <ul>
+                <li style="color: black;">songs</li>
+                <li>album</li>
+                <li>artist</li>
+                <li>playlists</li>
+                <li>
+                    <form method="GET" action="music list.php" style="display:inline;">
+                        <input type="search" name="search" placeholder="Search for Music " name="find" id="">
+                    </form>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+    <div class="laptop">
+
+        <div class="box1">
+            <div class="container">
+                <?php
     include "../Includes/connection.php";
 
     // Retrieve search query
@@ -56,91 +67,99 @@
     }
     $conn->close();
     ?>
-  </div>
+            </div>
+        </div>
 
-  <div class="drawer" id="drawer">
+        <div class="box2">
+        <div class="drawer" id="drawer">
     <div class="drawer-view">
-      <div class="image">
-        <img src="../elementor/images (1).jpeg" alt="e">
+      <div>
+        <img class="image" src="../Assests/OIP.jpeg" alt="e" id="songImage">
       </div>
       <div class="drawer-text">
-       <marquee> <h4 id="musicName">Music Name</h4></marquee>
+        <marquee> <h4 id="musicName">Music Name</h4></marquee>
         <h6 id="artistAlbum">Artist Name - Album Name</h6>
       </div>
       <div class="buttons">
         <button onclick="previous()">⏪</button>
-        <button onclick="togglePlayPause()">⏸️</button>
+        <button onclick="togglePlayPause()" id="playPauseButton">⏸️</button>
         <button onclick="next()">⏩</button>
       </div>
-     
-      </div>
-       <div class="progress">
-        <span id="currentTime">0:00</span> / 
-        <div id="progressContainer">
-          <div id="progress" data-progress="0%"></div>
-        </div>
-        <span id="fullTime">0:00</span>
     </div>
-    
-  </div>
-   
-  <audio id="audioPlayer"></audio>
+                <div class="progress">
+                    <span id="currentTime">0:00</span>
+                    <div id="progressContainer">
+                        <div id="progress" data-progress="0%"></div>
+                    </div>
+                    <span id="fullTime">0:00</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
 
 </body>
 
 <script>
-  // Audio player
-  var audio = document.getElementById("audioPlayer");
-  var currentIndex = -1;
-  var musicList = [];
+// Audio player
+var audio = document.getElementById("audioPlayer");
+var currentIndex = -1;
+var musicList = [];
 
-  // Function to play music
-  function playMusic(filePath) {
+// Function to play music
+function playMusic(filePath) {
     audio.src = filePath;
     audio.play();
     // Update UI
     var view = document.querySelector(".view.active");
     if (view) {
-      view.classList.remove("active");
+        view.classList.remove("active");
     }
     view = event.currentTarget;
     view.classList.add("active");
     // Update music details in drawer
     var musicName = view.querySelector("h4").textContent;
     var artistAlbum = view.querySelector("h6").textContent;
+    var songImage = view.querySelector("img").src;
     document.getElementById("musicName").textContent = musicName;
     document.getElementById("artistAlbum").textContent = artistAlbum;
-  }
+    document.getElementById("songImage").src = songImage;
+    document.getElementById("playPauseButton").textContent = "⏸️"; // Set play icon initially
+}
 
-  // Function to toggle play/pause
-  function togglePlayPause() {
+// Function to toggle play/pause
+function togglePlayPause() {
     if (audio.paused) {
-      audio.play();
+        audio.play();
+        document.getElementById("playPauseButton").textContent = "⏸️"; // Change to pause icon
     } else {
-      audio.pause();
+        audio.pause();
+        document.getElementById("playPauseButton").textContent = "▶️"; // Change to play icon
     }
-  }
+}
 
-  // Function to play next music
-  function next() {
+// Function to play next music
+function next() {
     currentIndex++;
     if (currentIndex >= musicList.length) {
-      currentIndex = 0;
+        currentIndex = 0;
     }
     playMusic(musicList[currentIndex]);
-  }
+}
 
-  // Function to play previous music
-  function previous() {
+// Function to play previous music
+function previous() {
     currentIndex--;
     if (currentIndex < 0) {
-      currentIndex = musicList.length - 1;
+        currentIndex = musicList.length - 1;
     }
     playMusic(musicList[currentIndex]);
-  }
+}
 
-  // Update progress bar and time
-  audio.addEventListener("timeupdate", function() {
+// Update progress bar and time
+audio.addEventListener("timeupdate", function() {
     var currentTime = audio.currentTime;
     var fullTime = audio.duration;
     var progress = (currentTime / fullTime) * 100;
@@ -153,8 +172,8 @@
     document.getElementById("currentTime").textContent = currentTimeString;
     document.getElementById("fullTime").textContent = fullTimeString;
     document.getElementById("progress").style.width = progress + "%";
-  });
-
+});
 </script>
+<?php include  '../pages/includes/sticky footer.php'; ?>
 
 </html>

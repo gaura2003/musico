@@ -30,6 +30,7 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
+<?php include  '../pages/includes/sticky footer.php'; ?>
 <style>
     /* Default styles for music card */
 .music-card {

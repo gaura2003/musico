@@ -2,8 +2,8 @@
     box-sizing: border-box;
 }
 
-body img {
-    width: 100%;
+.banner{
+    width: 400px;
 }
 
 body {

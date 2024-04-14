@@ -129,5 +129,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
+<?php include  '../pages/includes/sticky footer.php'; ?>
 </body>
 </html>
