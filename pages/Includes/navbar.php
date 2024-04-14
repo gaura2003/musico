@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Music Website</title>   
+<title>Musico </title>   
 
  <link rel="stylesheet" type="text/css" href="styles.css">
   <script src="script.js"></script>
@@ -14,13 +14,35 @@
      <link rel="stylesheet" href="../css/main.css">
      
        <link rel="stylesheet" href="../css/home.css">
+       <style>
+        body{
+            margin:0;
+            padding:0;
+            height:100vh;
+        }
+        nav{
+            border-radius:20px;
+        }
+    </style>
    
 </head>
-<body onload="startTimer()">
+<body onload="startTimer()" >
   <div id="loader">Loading...</div>
   <div id="page" style="display: none;">         
      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">User name</a>
+     <?php
+            // Start the session
+            session_start();
+
+            // Check if the user is logged in
+            if(isset($_SESSION['username'])) {
+                $username = $_SESSION['username'];
+            } else {
+                $username = "Guest"; // Default username if not logged in
+            }
+
+            echo '<a class="navbar-brand" href="#">' . $username . '</a>';
+            ?>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +52,7 @@
                     <a class="nav-link" href="profile.php">Profile</a>
                 </li>
                 <li class="nav-item">
-  <a class="nav-link" href="">Artists</a>
+  <a class="nav-link" href="artist list.php">Artists</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Category</a>
@@ -42,6 +64,15 @@
   <a class="nav-link" href="upload music.php">Upload Music</a>
                 <li class="nav-item">
                     <a class="nav-link" href="login.php">Logout</a>
+                </li>
+                <li>
+                <form method="GET" action="search.php" style="display:inline;">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="search" placeholder="Search for Music " name="find"
+                        id="">
+                    <button type="submit" class="btn">Search</button>
+                </div>
+            </form>
                 </li>
             </ul>
         </div>
